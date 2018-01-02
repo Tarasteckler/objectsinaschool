@@ -9,7 +9,6 @@ function Student(firstName, lastName, grade){
     this.firstName = firstName;
     this.lastName = lastName;
     this.grade= grade;
-
 }
 
 function Teacher(firstName, lastName, subject) {
@@ -30,7 +29,7 @@ function Section(name, maxSize, teacher){
     // this.sectionSeatsRemaining = maxSize - currentSize;
 }
 
-function addStudent(){
+function addStudent() {
     var first = document.getElementById("stuFirst").value;
     var last = document.getElementById("stuLast").value;
     var grade = document.getElementById("stuGrade").value;
@@ -131,7 +130,7 @@ function clearBoxes() {
 function populateLists(){
     document.getElementById("students").innerHTML = "<option value='0'>Select a student</option>";
 
-    for(i=1; i < (allStudents.length + 1); i++){
+    for(i=0; i < allStudents.length; i++){
         document.getElementById("students").innerHTML +=
             "<option value= '" + i + "'>" + allStudents[i].firstName + " " + allStudents[i].lastName + "</option>";
     }
@@ -142,5 +141,7 @@ function populateLists(){
 }
 
 // function updateLists(){
-//     if()
+//     for(i=0; i<allStudents.length; i++){
+//         if (allStudents[i] )
+//     }
 // }
