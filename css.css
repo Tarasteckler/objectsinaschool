@@ -1,0 +1,33 @@
+body{
+    text-align: center;
+    background-color: 	#A52A2A;
+}
+
+#listing, #sectionInfo{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+header, h1, h2{
+    font-family: "Stencil", fantasy;
+    color: #FFC0CB;
+}
+
+header{
+    font-size: 150%;
+}
+
+#confirmStudent, #confirmSection, #confirmTeacher, #error, #confirmAddition, #studentsEnrolled{
+    color: white;
+}
+
+table{
+    background-color: white;
+    color: black;
+}
+
+#listing{
+    color: black;
+}
+
+tr:hover {background-color: #B0C4DE;}

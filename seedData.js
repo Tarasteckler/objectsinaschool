@@ -20,4 +20,3 @@ var section3 = new Section("Theory of Knowledge", 25, "Richard Conn");
 allSections.push(section1);
 allSections.push(section2);
 allSections.push(section3);
-

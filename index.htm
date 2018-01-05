@@ -13,39 +13,43 @@
     <h1>School Management System</h1>
 </header>
 
+<hr>
+
 <select id="listItems">
     <option value="1">Students</option>
     <option value="2">Teachers</option>
     <option value="3">Sections</option>
-
 </select>
 
 <button id= "list" onclick="list()" >List items</button> <br> <br>
-<table id="listing" border="1" cellspacing="0" cellpadding="10">
-
-</table>
+<table id="listing" border="1" cellspacing="0" cellpadding="15"></table>
 
 <h2>Add a person:</h2>
 
-<input id="stuFirst" type="text" placeholder="First name" value="Tara">
-<input id="stuLast" type="text" placeholder="Last name" value="Steckler">
-<input id="stuGrade" type="text" placeholder="Grade" value="12">
+<input id="stuFirst" type="text" placeholder="First name" value="Tara" class="stuBox">
+<input id="stuLast" type="text" placeholder="Last name" value="Steckler" class="stuBox">
+<input id="stuGrade" type="text" placeholder="Grade" value="12" class="stuBox">
 <button id= "student" onclick="addStudent(); populateLists()" >Add student!</button> <br> <br>
+<div id="confirmStudent"></div> <br>
+<div id="error"></div>
 
-<input id="teaFirst" type="text" placeholder="First name" value="Matt">
-<input id="teaLast" type="text" placeholder="Last name" value="Albinson">
-<input id="teaSubject" type="text" placeholder="Subject" value="Computer Science">
+<input id="teaFirst" type="text" placeholder="First name" value="Matt" class="teaBox">
+<input id="teaLast" type="text" placeholder="Last name" value="Albinson" class="teaBox">
+<input id="teaSubject" type="text" placeholder="Subject" value="Computer Science" class="teaBox">
 <button id= "teacher" onclick="addTeacher()" >Add teacher!</button> <br> <br>
+<div id="confirmTeacher"></div> <br>
+
+<hr>
 
 <h2>Add a section:</h2>
 
-<input id="sectionName" type="text" placeholder="Section name" value="History">
-<input id="sectionCount" type="text" placeholder="Max # students" value="30">
-<input id="secTeacher" type="text" placeholder="Teacher" value="Keldon Clegg">
-
+<input id="secName" type="text" placeholder="Section name" value="History" class="secBox">
+<input id="secCount" type="text" placeholder="Max # students" value="30" class="secBox">
+<input id="secTeacher" type="text" placeholder="Teacher" value="Keldon Clegg" class="secBox">
 <button id= "subject" onclick="addSection(); populateLists()" >Add section!</button> <br> <br>
+<div id="confirmSection"></div> <br>
 
-<div id="confirm"></div> <br>
+<hr>
 
 <h2>Add a student to a section:</h2>
 
@@ -58,8 +62,14 @@
 </select>
 
 <button id= "add" onclick="addStudentToSection()" >Add student to section!</button> <br> <br>
+<div id="confirmAddition"></div>
 
+<hr>
 
+<select id="allSecs"></select>
+<button id="secInfo" onclick="listSectionInfo()">List section info</button> <br> <br>
+<table id="sectionInfo" border="1" cellspacing="0" cellpadding="15"></table> <br>
+<div id="studentsEnrolled"></div>
 </body>
 </html>
 
