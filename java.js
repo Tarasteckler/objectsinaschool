@@ -41,7 +41,7 @@ function addStudent() {
     var student = new Student(first, last, grade);
     allStudents.push(student);
     wholeSchool.push(student);
-    document.getElementById("confirmStudent").innerHTML = student.firstName + " added";
+    document.getElementById("confirmStudent").innerHTML = student.firstName + " added.";
     clearBoxes("stuBox");
 }
 
@@ -71,7 +71,7 @@ function addStudentToSection (){
     console.log(section);
     section.students.push(student);
     section.currentSize ++;
-    document.getElementById("confirmAddition").innerHTML = student.firstName + " added to " + section.name;
+    document.getElementById("confirmAddition").innerHTML = student.firstName + " added to " + section.name + ".";
 }
 
 // function removeStudentFromSection(studentId, sectionId){
@@ -85,7 +85,7 @@ function addTeacher(){
     var teacher = new Teacher(first, last, subject);
     allTeachers.push(teacher);
     wholeSchool.push(teacher);
-    document.getElementById("confirmTeacher").innerHTML = teacher.firstName + " added";
+    document.getElementById("confirmTeacher").innerHTML = teacher.firstName + " added.";
     clearBoxes("teaBox");
 }
 
@@ -96,7 +96,7 @@ function addSection(){
     var section = new Section (subject, count, teacher);
     allSections.push(section);
     wholeSchool.push(section);
-    document.getElementById("confirmSection").innerHTML = section.name + " added";
+    document.getElementById("confirmSection").innerHTML = section.name + " added.";
     clearBoxes("secBox");
 }
 
@@ -131,6 +131,9 @@ function listStudents(){
     for (var i = 0; i < allSections.length; i++) {
         if (allSections[i].id === id) {
             var thisSection = allSections[i];
+            if (thisSection.currentSize === 0){
+                document.getElementById("studentsEnrolled").innerHTML = "No students are currently enrolled in " + thisSection.name + ".";
+            }
             for (var x = 0; x < thisSection.students.length; x++) {
                  document.getElementById("studentsEnrolled").innerHTML += thisSection.students[x].firstName + " " + thisSection.students[x].lastName + "<br>";
             }

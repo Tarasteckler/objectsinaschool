@@ -15,7 +15,7 @@ allStudents.push(s2);
 allStudents.push(s3);
 
 var section1 = new Section("English", 30, "Melissa Jimenez");
-var section2 = new Section("Computer science", 30, "Matt Albinson");
+var section2 = new Section("Computer Science", 30, "Matt Albinson");
 var section3 = new Section("Theory of Knowledge", 25, "Richard Conn");
 allSections.push(section1);
 allSections.push(section2);
