@@ -7,72 +7,114 @@
     <script src="seedData.js"></script>
     <link rel="stylesheet" href="css.css">
 </head>
-<body onload="populateLists()">
+<body onload="populateLists(); hideEverything()">
 
 <header>
-    <h1>School Management System 1.0</h1>
+    <h1>School Management System </h1>
 </header>
 
+<h2>Options:</h2>
+<hr>
 
-<h2>List items in the school:</h2>
+<table id="options"  cellpadding="30" >
+<tr>
+    <td>
+        <h3>List items in the school:</h3>
+        <a href="#" onclick="toggle('div1')"><img id="listIcon" src ="img/list.png"/></a>
+    </td>
+    <td>
+        <h3>Add a person:</h3>
+        <a href="#" onclick="toggle('div2', 'div2')"><img id="person" src ="img/person.png"/></a>
+    </td>
+    <td>
+        <h3>Add a section:</h3>
+        <a href="#" onclick="toggle('div3', 'div3')"><img id="book" src ="img/book.png"/></a>
+    </td>
+    <td>
+        <h3>Add a student to a section:</h3>
+        <a href="#" onclick="toggle('div4', 'div4')"><img id="plus" src ="img/plus.png"/></a>
+    </td>
+    <td>
+        <h3>Remove a student from a section:</h3>
+        <a href="#" onclick="toggle('div5', 'div5')"><img id="minus" src ="img/minus.png"/></a>
+    </td>
+    <td>
+        <h3>Learn about a section:</h3>
+        <a href="#" onclick="toggle('div6', 'div6')"><img id="brain" src ="img/brain.png"/></a>
+    </td>
+    <td>
+        <h3>Search for a student:</h3>
+        <a href="#" onclick="toggle('div7', 'div7')"><img id="search" src ="img/search.png"/></a>
+    </td>
+</tr>
+</table>
+<hr>
 
-<select id="listItems">
+<div id="div1" class="display">
+<select id="listItems" >
     <option value="1">Students</option>
     <option value="2">Teachers</option>
     <option value="3">Sections</option>
 </select>
-
 <button id= "list" onclick="list()" >List items</button> <br> <br>
-<table id="listing" border="1" cellspacing="0" cellpadding="15"></table>
-<hr>
+<table id="listing" class= "things" border="1" cellspacing="0" cellpadding="15"></table>
+</div>
 
-<h2>Add a person:</h2>
-
-<input id="stuFirst" type="text" placeholder="First name" value="Tara" class="stuBox">
+<div id="div2" class="display">
+<br><input id="stuFirst" type="text" placeholder="First name" value="Tara" class="stuBox">
 <input id="stuLast" type="text" placeholder="Last name" value="Steckler" class="stuBox">
 <input id="stuGrade" type="text" placeholder="Grade" value="12" class="stuBox">
-<button id= "student" onclick="addStudent(); populateLists()" >Add student!</button> <br> <br>
-<div id="confirmStudent"></div> <br>
-<div id="error"></div>
+<button id= "student" onclick="addStudent(); populateLists()" >Add student!</button> <br><br>
 
 <input id="teaFirst" type="text" placeholder="First name" value="Matt" class="teaBox">
 <input id="teaLast" type="text" placeholder="Last name" value="Albinson" class="teaBox">
 <input id="teaSubject" type="text" placeholder="Subject" value="Computer Science" class="teaBox">
-<button id= "teacher" onclick="addTeacher()" >Add teacher!</button> <br> <br>
-<div id="confirmTeacher"></div> <br>
+<button id= "teacher" onclick="addTeacher()" >Add teacher!</button> </div><br>
+<div id="confirmStudent" class="div2 output"></div>
+<div id="confirmTeacher" class="div2 output"></div>
+<div id="error" class="div2 output"></div>
 
-<hr>
-
-<h2>Add a section:</h2>
-
-<input id="secName" type="text" placeholder="Section name" value="History" class="secBox">
+<div id="div3" class="display">
+<br><input id="secName" type="text" placeholder="Section name" value="History" class="secBox">
 <input id="secCount" type="text" placeholder="Max # students" value="30" class="secBox">
 <input id="secTeacher" type="text" placeholder="Teacher" value="Keldon Clegg" class="secBox">
-<button id= "subject" onclick="addSection(); populateLists()" >Add section!</button> <br> <br>
-<div id="confirmSection"></div> <br>
+<button id= "subject" onclick="addSection(); populateLists()" >Add section!</button> </div>
+<div id="confirmSection" class="div3 output"></div>
 
-<hr>
-
-<h2>Add a student to a section:</h2>
-
+<div id="div4" class="display">
 <select id="students">
     <option value="0">Select a student</option>
 </select>
-
-<select id="sections">
+<select id="sections" >
     <option value="0">Select a section</option>
 </select>
+<button id= "add" onclick="addStudentToSection()" >Add student to section!</button> </div>
+<div id="confirmAddition" class="div4 output"></div>
 
-<button id= "add" onclick="addStudentToSection()" >Add student to section!</button> <br> <br>
-<div id="confirmAddition"></div>
 
-<hr>
-<h2>Learn about a section:</h2>
+<div id="div5" class="display">
+<select id="students2" >
+    <option value="0">Select a student</option>
+</select>
+<select id="sections2" >
+    <option value="0">Select a section</option>
+</select>
+<button id= "remove" onclick="removeStudentFromSection()" >Remove student from section!</button> </div>
+<div id="confirmRemoval" class="div5 output"></div>
 
-<select id="allSecs"></select>
+
+<div id="div6" class="display">
+<select id="allSecs" ></select>
 <button id="secInfo" onclick="listSectionInfo()">List section info</button> <br> <br>
-<table id="sectionInfo" border="1" cellspacing="0" cellpadding="15"></table> <br>
-<div id="studentsEnrolled"></div>
+<table id="sectionInfo" class="things" border="1" cellspacing="0" cellpadding="15"></table> </div><br>
+<div id="studentsEnrolled" class="div6 output"></div>
+
+<div id="div7" class="display">
+    <select id="studentsAgain" ></select>
+    <button id= "toSearch" onclick="searchForStudent()" >Learn about this student!</button><br><br>
+<table id="studentToLearnAbout" border="1" cellspacing="0" cellpadding="15"></table>
+</div>
+
 </body>
 </html>
 

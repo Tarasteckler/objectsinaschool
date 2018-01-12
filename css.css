@@ -3,31 +3,48 @@ body{
     background-color: 	#A52A2A;
 }
 
-#listing, #sectionInfo{
+#listing, #sectionInfo, #options, #studentToLearnAbout{
     margin-left: auto;
     margin-right: auto;
 }
 
-header, h1, h2{
-    font-family: "Stencil", fantasy;
-    color: #FFC0CB;
+ h2{
+    font-family: Seravek, fantasy;
+    color: black;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: white;
 }
 
+h1, header{
+    color: white;
+    font-family: Seravek, fantasy;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke-color: black;
+}
+
+h3{
+    color: white;
+}
 header{
     font-size: 150%;
 }
 
-#confirmStudent, #confirmSection, #confirmTeacher, #error, #confirmAddition, #studentsEnrolled{
+#confirmStudent, #confirmSection, #confirmTeacher, #error, #confirmAddition, #studentsEnrolled, #confirmRemoval{
     color: white;
 }
 
-table{
+#options{
+    background-color: #A52A2A;
+}
+
+#listing, #sectionInfo, #studentToLearnAbout{
+    color: black;
     background-color: white;
-    color: black;
 }
 
-#listing{
-    color: black;
-}
+td:hover {background-color: #FFA07A;}
 
-tr:hover {background-color: #B0C4DE;}
+#person, #book, #plus, #minus, #brain, #listIcon, #search{
+    height: 40px;
+    width: 40px;
+}

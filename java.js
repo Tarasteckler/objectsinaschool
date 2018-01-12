@@ -25,9 +25,41 @@ function Section(name, maxSize, teacher){
     this.students = [];
     this.currentSize = this.students.length;
     this.teacher = teacher;
-    //this.addStudent = addStudentToSection();
-    //this.removeStudent = removeStudentFromSection();
-    //this.sectionSeatsRemaining = maxSize - currentSize;
+    this.seatsRemaining = (maxSize - this.currentSize);
+}
+
+function hideEverything(){
+    document.getElementById("div1").style.display = "none";
+    document.getElementById("div2").style.display = "none";
+    document.getElementById("div3").style.display = "none";
+    document.getElementById("div4").style.display = "none";
+    document.getElementById("div5").style.display = "none";
+    document.getElementById("div6").style.display = "none";
+    document.getElementById("div7").style.display = "none";
+}
+
+function toggle(id, div) {
+    var allDisplays = document.getElementsByClassName("display");
+    for (i = 0; i < allDisplays.length; i++){
+        allDisplays[i].style.display = "none";
+    }
+    document.getElementById(id).style.display = "inline";
+
+    var wantedOutputs = document.getElementsByClassName(div);
+    var allOutputs = document.getElementsByClassName("output");
+
+    var allThings = document.getElementsByClassName("things");
+    for(j=0; j<allThings.length; j++){
+        allThings[j].innerHTML = "";
+    }
+
+    for (y = 0; y < allOutputs.length; y++){
+        allOutputs[y].style.display = "none";
+        allOutputs[y].innerHTML = "";
+    }
+    for (x = 0; x < wantedOutputs.length; x++){
+        wantedOutputs[x].style.display = "block";
+    }
 }
 
 function addStudent() {
@@ -64,19 +96,26 @@ function findSectionById(id) {
 function addStudentToSection (){
     var stuId = parseInt(document.getElementById("students").value);
     var secId = parseInt(document.getElementById("sections").value);
-    console.log(secId);
     var student = findStudentById(stuId);
-    console.log(student);
     var section = findSectionById(secId);
-    console.log(section);
     section.students.push(student);
     section.currentSize ++;
+    section.seatsRemaining --;
     document.getElementById("confirmAddition").innerHTML = student.firstName + " added to " + section.name + ".";
 }
 
-// function removeStudentFromSection(studentId, sectionId){
-//
-// }
+function removeStudentFromSection(){
+    var stuToRemoveId = parseInt(document.getElementById("students2").value);
+    var secToRemoveFromId = parseInt(document.getElementById("sections2").value);
+    var stuToRemove = findStudentById(stuToRemoveId);
+    var secToRemoveFrom = findSectionById(secToRemoveFromId);
+    var index = secToRemoveFrom.students.indexOf(stuToRemove);
+    secToRemoveFrom.students.splice(index, 1);
+    secToRemoveFrom.currentSize --;
+    secToRemoveFrom.seatsRemaining ++;
+    document.getElementById("confirmRemoval").innerHTML = stuToRemove.firstName + " removed from " + secToRemoveFrom.name + ".";
+
+}
 
 function addTeacher(){
     var first = document.getElementById("teaFirst").value;
@@ -114,11 +153,13 @@ function listSectionInfo(){
             output += "<td>" + "TEACHER" + "</td>";
             output += "<td>" + "MAX SIZE" + "</td>";
             output += "<td>" + "CURRENT SIZE" + "</td>";
+            output += "<td>" + "SEATS REMAINING" + "</td>";
             output += "<td>" + "STUDENTS ENROLLED" + "</td>";
             output += "<tr></tr><td>" + thisSection.name + "</td>";
             output += "<td>" + thisSection.teacher + "</td>";
             output += "<td>" + thisSection.maxSize + "</td>";
             output += "<td>" + thisSection.currentSize + "</td>";
+            output += "<td>" + thisSection.seatsRemaining + "</td>";
             output += "<td>" + "<button id= 'listStudents' onclick='listStudents()' >Click to see enrolled students!</button>" + "</td>";
             document.getElementById("sectionInfo").innerHTML = output;
             return;
@@ -146,7 +187,7 @@ function listStudents(){
 function list(){
     output = "";
     if(document.getElementById("listItems").value==="1"){
-        output += "<tr><td>" + "FIRST NAME" + "</td>";
+        output += "<tr id='theList'><td>" + "FIRST NAME" + "</td>";
         output += "<td>" + "LAST NAME" + "</td>";
         output += "<td>" + "GRADE" + "</td>";
 
@@ -205,4 +246,36 @@ function populateLists(){
         document.getElementById("allSecs").innerHTML +=
             "<option value='" + allSections[z].id + "'>" + allSections[z].name + "</option>";
     }
+    document.getElementById("students2").innerHTML = "<option value='0'>Select a student</option>";
+    for(var y = 0; y < allStudents.length; y++){
+        document.getElementById("students2").innerHTML +=
+            "<option value='" + allStudents[y].id + "'>" + allStudents[y].firstName + " " + allStudents[y].lastName + "</option>";
+    }
+    document.getElementById("sections2").innerHTML = "<option value='0'>Select a section</option>";
+    for(var j = 0; j < allSections.length; j++){
+        document.getElementById("sections2").innerHTML +=
+            "<option value='" + allSections[j].id + "'>" + allSections[j].name + "</option>";
+    }
+    document.getElementById("studentsAgain").innerHTML =  "<option value='0'>Select a student to learn about</option>";
+    for (var q = 0; q < allStudents.length; q++){
+        document.getElementById("studentsAgain").innerHTML +=
+            "<option value='" + allStudents[q].id + "'>" + allStudents[q].firstName + "</option>";
+    }
+}
+
+function searchForStudent(){
+    document.getElementById("studentToLearnAbout").innerHTML = "";
+    var output = "";
+    var student = parseInt(document.getElementById("studentsAgain").value);
+    for (i = 0; i < allStudents.length; i++){
+        if (allStudents[i].id === student){
+            output += "<tr><td>" + "NAME" + "</td>";
+            output += "<td>" + "ID" + "</td>";
+            output += "<td>" + "GRADE" + "</td>";
+            output += "<tr><td>" + allStudents[i].firstName + " " + allStudents[i].lastName + "</td>";
+            output += "<td>" + allStudents[i].id + "</td>";
+            output += "<td>" + allStudents[i].grade + "</td></tr>";
+        }
+    }
+    document.getElementById("studentToLearnAbout").innerHTML = output;
 }
